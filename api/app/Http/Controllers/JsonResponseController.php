@@ -18,19 +18,20 @@ class JsonResponseController extends Controller
         return response()->json($response,200);
     }
 
-    public static function error($message){
+    public static function error($message,$status=404){
 
             $response = [
                 "response"=>false,
                 "results"=>null,
                 "error"=>true,
                 "message"=>array(
-                    "code"=>404,
-                    "message"=>$message
-                )
+                    "code"=>$status,
+                    "error_message"=>$message
+                ),
+                "status"=>$status
                 ];
 
-        return response()->json($response,404);
+        return response()->json($response,$status);
     }
 
 

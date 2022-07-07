@@ -14,9 +14,9 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+}); */
 
 
 Route::prefix("auth")->group(function(){
@@ -24,6 +24,9 @@ Route::prefix("auth")->group(function(){
     Route::post("login",[UsersController::class,"login"]);
 
     Route::post("register",[UsersController::class,"register"]);
+
+    Route::post("refresh",[UsersController::class,"refresh"]);
+
 
 });
 

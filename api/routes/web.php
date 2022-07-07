@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+/* Route::get('/', function () {return view('welcome');});
 
 
-Route::post("/users/login",[UsersController::class,"login"])->name("apiUserLogin");
+Route::post("/users/login",[UsersController::class,"login"])->name("apiUserLogin"); */
