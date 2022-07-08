@@ -1,18 +1,22 @@
-import { env } from "../Config/app";
+import { env } from "../App/Config/app";
 import axios from 'axios';
 
-export const api = {
+const URL = env.API_END_POINT;
+export const APICALLER = {
     login: async(datas)=>{
         try {
             const res = await axios({
-                url: `${APIURL}auth/login`,
+                url: `${URL}auth/login`,
                 method: "POST",
-                data: JSON.stringify(datas),
-                headers: { "X-Api-Token": "" },
+                data: datas,
+                /* headers: { "X-Api-Token": "" }, */
               });
               return await res.data;
         } catch (error) {
-            return error;
+            return error.response.data;
         }
+    },
+    validateToken: async(token)=>{
+
     }
 }

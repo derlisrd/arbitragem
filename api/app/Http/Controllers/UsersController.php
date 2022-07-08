@@ -23,6 +23,16 @@ class UsersController extends Controller
         // grab credentials from the request
         $credentials = $request->only('email', 'password');
 
+        $validator = Validator::make($request->post(), [
+            'email' => 'required|email',
+            'password'=>'required',
+        ]);
+
+
+        if ($validator->fails()) {
+           return JsonResponseController::error($validator->errors()->first());
+        }
+
         try {
             // attempt to verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
@@ -42,7 +52,7 @@ class UsersController extends Controller
             "email" => $userdata->email,
             'id' => $userdata->id,
             "type_user" => $userdata->type_user,
-            "permission" => $userdata->userspermissions
+            "permissions" => $userdata->userspermissions
         ];
 
         return  JsonResponseController::get($data);

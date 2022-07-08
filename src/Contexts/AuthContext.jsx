@@ -1,26 +1,74 @@
-import React,{ createContext, useContext,useState } from "react";
+import React,{ createContext, useContext,useState,useCallback,useEffect} from "react";
+import { APICALLER } from "../Services/api";
 
 
 const ContextAuth = createContext()
 
 function AuthContext({children}) {
 
+    const storage = JSON.parse(sessionStorage.getItem("auth")) || JSON.parse(localStorage.getItem("auth"));
+
     const initialUserData = {
         token: null,
         id : null,
-        username:null,
-        login:false,
-        permisos:[]
+        email:null,
+        auth:false,
+        permissions:[],
+        type_user:null
     }
 
-    const [userData,setUserData]= useState({
-        token:null,
+    const [userData,setUserData]= useState(storage ? storage : initialUserData);
 
-    })
+    const logIn = async (datas)=>{
+        let res = await APICALLER.login(datas);
+
+        if(res.response===false){
+            console.log(res);
+            return false;
+        }
+        if(res.response===true){
+            let newdatesuser = {
+                token: res.results.token,
+                id: res.results.id,
+                email: res.results.email,
+                permissions: res.results.permissions,
+                type_user:res.results.type_user,
+                auth:true
+            }
+            setUserData(newdatesuser);
+            localStorage.setItem("userData", JSON.stringify(newdatesuser))
+        }
+
+    }
+
+    const logOut = ()=>{
+
+    }
+
+    const verificar = useCallback(async()=>{
+
+        if (userData.auth) {
+            let res = await APICALLER.validateToken(userData.token);
+            if (res.response===false) {    
+                logOut()
+            }
+        }
+
+    },[userData,logOut])
+
+    useEffect(() => {
+        const ca = new AbortController(); let isActive = true;
+        if (isActive) {
+          verificar();
+        }
+        return () => {
+          isActive = false; ca.abort();
+        };
+      }, [verificar]);
 
 
     const values = {
-        userData
+        userData,logIn
     }
     return ( 
         <ContextAuth.Provider value={values}>
@@ -30,8 +78,8 @@ function AuthContext({children}) {
 }
 
 export function useAuth(){
-    const {userData} = useContext(ContextAuth)
-    return {userData}
+    const {userData,logIn} = useContext(ContextAuth)
+    return {userData,logIn}
 }
 
 

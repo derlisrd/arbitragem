@@ -10,23 +10,27 @@ import LoginForm from '../Views/LoginForm';
 function RoutesMain() {
 
     const R = "/";
-    const {userData} = useAuth();
-    const {login,permisos} = userData
 
-    const PublicRoute = ({children})=> login ? <Views>{children}</Views> : <Navigate to={"/"} />
+    const {userData} = useAuth();
+    const {auth,permissions} = userData
+
+    const PublicRoute = ({children})=> auth ? <Views>{children}</Views> : <Navigate to={"/"} />
 
     const PrivateRoute = ({children,id})=>{
-        if(login && !permisos.some(e => parseInt(e.id_permiso_permiso) === parseInt(id)) ){
+        if(auth && !permissions.some(e => parseInt(e.permission_id) === parseInt(id)) ){
             return <Navigate to="/notautorized" />
         } 
 
-        return login ? <Views>{children}</Views> : <Navigate to={"/"} />
+        return auth ? <Views>{children}</Views> : <Navigate to={"/"} />
     }
 
-    return (
 
+    
+
+    return (
         <Routes>
-            <Route path={R+"/dashboard"} element={<PrivateRoute id={1}><Dashboard /></PrivateRoute>} />
+            <Route path={R+"ahora"} element={<PublicRoute><h2>PUBLIC ROUTE</h2></PublicRoute>} />
+            <Route path={R+"dashboard"} element={<PrivateRoute id={1}><Dashboard /></PrivateRoute>} />
             <Route path={R} element={<LoginForm />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>

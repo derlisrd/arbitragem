@@ -1,25 +1,49 @@
 import { Box, Button, Grid, Icon, InputAdornment, Stack, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useState,useCallback,useEffect } from 'react'
+import {useAuth} from '../../Contexts/AuthContext';
+import {useStyles} from '../../Styles/global'
+import useGoto from '../../Hooks/useGoTo';
 
 function LoginForm() {
+    const navigate = useGoto();
+    const style = useStyles();
+    const {logIn,userData} = useAuth();
+    const {auth} = userData
     const initialForm = {
         email: "",
         password: ""
     }
-    const enviar = ()=>{
-
-    }
+    const [form,setForm] = useState(initialForm)
 
     const change = e=>{
         const {value,name} = e.target;
         setForm({...form,[name]:value});
     }
+    const enviar = async(e)=>{
+      e.preventDefault()
+      if(!logIn(form)){
+        console.log("ErrorPage");
+      }
+    }
+    
+    const verificar = useCallback(()=>{
+      if(auth) navigate.to('dashboard');
+    },[auth,navigate])
+  
+  
+    useEffect(() => {
+      const ca = new AbortController(); let isActive = true;
+      if (isActive) {
+        verificar();
+      }
+      return () => {isActive = false;ca.abort();};
+    }, [verificar]);
 
-    const [form,setForm] = useState(initialForm)
+    
     return (
-        <form onSubmit={enviar} >
-          <Box boxShadow={3} borderRadius={5} maxWidth={360}>
-            <Grid container spacing={2}>
+        <form onSubmit={enviar} className={[style.centercenter]} >
+          <Box boxShadow={3} borderRadius={5} maxWidth={360} padding={2}>
+            <Grid container spacing={3}>
             <Grid item xs={12}>
                 <Stack justifyContent="center" alignItems="center" spacing={2}>
                   <Icon color="primary" fontSize="large">rocket_launch</Icon>
@@ -45,7 +69,7 @@ function LoginForm() {
               </Grid>
 
             <Grid item xs={12}>
-                <Button type="submit">
+                <Button variant="contained" size='large' fullWidth type="submit">
                     Ingresar
                 </Button>
             </Grid>
