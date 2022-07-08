@@ -32,8 +32,17 @@ class UsersController extends Controller
             return JsonResponseController::error("Cannot created token",500);
         }
 
-        // all good so return the token
-        return response()->json(compact('token'));
+        $user = User::where('email', $request->email)->first();
+
+        $data = [
+            "token" => $token,
+            "email" => $user->email,
+            'id' => $user->id,
+            "type_user" => $user->type_user
+        ];
+
+        return  JsonResponseController::get($data);
+
     }
 
 

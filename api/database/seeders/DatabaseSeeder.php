@@ -23,5 +23,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('join1234'),
             'type_user'=>1
         ]);
+        DB::table('permissions')->insert([
+            'key' => 'Dashboard',
+            'description' => 'Dashboard description',
+        ]);
+        DB::table('users_permissions')->insert([
+            'user_id' => 1,
+            'permission_id' => 1
+        ]);
     }
 }
