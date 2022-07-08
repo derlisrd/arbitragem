@@ -9,4 +9,8 @@ class Permission extends Model
 {
     use HasFactory;
     protected $table = 'permissions';
+
+    public function userpermission(){
+        return $this->hasMany(UserPermission::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UsersPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -32,13 +33,16 @@ class UsersController extends Controller
             return JsonResponseController::error("Cannot created token",500);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $userdata = User::where('email', $request->email)->first();
+
+
 
         $data = [
             "token" => $token,
-            "email" => $user->email,
-            'id' => $user->id,
-            "type_user" => $user->type_user
+            "email" => $userdata->email,
+            'id' => $userdata->id,
+            "type_user" => $userdata->type_user,
+            "permission" => $userdata->userspermissions
         ];
 
         return  JsonResponseController::get($data);

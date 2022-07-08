@@ -27,7 +27,6 @@ Route::prefix("auth")->group(function(){
 
     Route::post("refresh",[UsersController::class,"refresh"]);
 
-
 });
 
 
