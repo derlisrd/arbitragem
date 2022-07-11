@@ -36,16 +36,20 @@ function AuthContext({children}) {
                 auth:true
             }
             setUserData(newdatesuser);
-            localStorage.setItem("userData", JSON.stringify(newdatesuser))
+            sessionStorage.setItem("auth", JSON.stringify(newdatesuser))
+            localStorage.setItem("auth", JSON.stringify(newdatesuser))
         }
 
     }
 
     const logOut = ()=>{
+        setUserData(initialUserData);
+        localStorage.removeItem("auth");
+        sessionStorage.setItem("auth",JSON.stringify(initialUserData));
 
     }
 
-    const verificar = useCallback(async()=>{
+    const validarToken = useCallback(async()=>{
 
         if (userData.auth) {
             let res = await APICALLER.validateToken(userData.token);
@@ -59,12 +63,12 @@ function AuthContext({children}) {
     useEffect(() => {
         const ca = new AbortController(); let isActive = true;
         if (isActive) {
-          verificar();
+          validarToken();
         }
         return () => {
           isActive = false; ca.abort();
         };
-      }, [verificar]);
+      }, [validarToken]);
 
 
     const values = {

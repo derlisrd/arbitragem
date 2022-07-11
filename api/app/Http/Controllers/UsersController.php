@@ -7,6 +7,7 @@ use App\Models\UsersPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Js;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -60,36 +61,19 @@ class UsersController extends Controller
     }
 
 
-
-    /* public function login(Request $request){
-
-
-        $validator = Validator::make($request->post(), [
-            'email' => 'required|email',
-            'password'=>'required',
-        ]);
+    public function validatetoken(Request $request) {
 
 
-        if ($validator->fails()) {
-           return JsonResponseController::error($validator->errors()->first());
-        }
+        if(auth('api')->check()){
+            $data = ["tokenvalid"=>true];
+            return  JsonResponseController::get($data);
+        }else{
 
-        $user = User::where('email', $request->email)->first();
-
-        $credentials = $request->only(["email","password"]);
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            return JsonResponseController::error("Invalid credentials",401);
+            return JsonResponseController::error("Token invalid",401);
         }
 
 
-        if (! $token = auth()->attempt($credentials)) {
-            return JsonResponseController::error("Invalid credentials",401);
-        }
-
-        return $this->respondWithToken($token);
-
-        //return JsonResponseController::get($user);
-    } */
+    }
 
     public function logout()
     {
@@ -103,9 +87,21 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh()
+    public function refreshtoken()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        try {
+
+           $at = (auth('api')->refresh());
+
+           $array = [
+            "token"=> $at
+           ];
+           return JsonResponseController::get($array);
+
+        } catch (\Throwable $th) {
+
+            return JsonResponseController::error($th->getMessage(),401);
+        };
     }
 
     /**

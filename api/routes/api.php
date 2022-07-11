@@ -25,8 +25,9 @@ Route::prefix("auth")->group(function(){
 
     Route::post("register",[UsersController::class,"register"]);
 
-    Route::post("refresh",[UsersController::class,"refresh"]);
+    Route::post("refreshtoken",[UsersController::class,"refreshtoken"]);
 
+    Route::post("validatetoken",[UsersController::class,"validatetoken"]);
 });
 
 
