@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -13,6 +12,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import Menu from '../Components/Menu';
+import { Stack, Icon, Tooltip} from '@mui/material';
+import { useAuth } from '../Contexts/AuthContext';
 
 const drawerWidth = 240;
 
@@ -84,6 +85,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 export default function Views({children}) {
+
+  const {logOut} = useAuth()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -97,26 +100,26 @@ export default function Views({children}) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar position="fixed" open={open}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Arbitragem
-          </Typography>
+            <IconButton onClick={handleDrawerOpen} edge="start"
+                sx={{marginRight: 5, ...(open && { display: 'none' })}}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" noWrap component="div">
+                Arbitragem
+              </Typography>
         </Toolbar>
+          <Tooltip title="Log out" placeholder="bottom">
+          <IconButton onClick={logOut}>
+            <Icon>logout</Icon>
+          </IconButton>
+          </Tooltip>
+        </Stack>
       </AppBar>
+
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>

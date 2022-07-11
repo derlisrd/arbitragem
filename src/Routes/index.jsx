@@ -5,6 +5,8 @@ import Views from '../Views';
 import Dashboard from '../Views/Dashboard';
 import ErrorPage from '../Views/Errors';
 import LoginForm from '../Views/LoginForm';
+import Reports from '../Views/Reports';
+import Users from '../Views/Users';
 
 
 function RoutesMain() {
@@ -31,6 +33,8 @@ function RoutesMain() {
         <Routes>
             <Route path={R+"ahora"} element={<PublicRoute><h2>PUBLIC ROUTE</h2></PublicRoute>} />
             <Route path={R+"dashboard"} element={<PrivateRoute id={1}><Dashboard /></PrivateRoute>} />
+            <Route path={R+"reports"} element={<PrivateRoute id={2}><Reports /></PrivateRoute>} />
+            <Route path={R+"users"} element={<PrivateRoute id={3}><Users /></PrivateRoute>} />
             <Route path={R} element={<LoginForm />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>

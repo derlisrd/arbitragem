@@ -19,6 +19,27 @@ function AuthContext({children}) {
 
     const [userData,setUserData]= useState(storage ? storage : initialUserData);
 
+
+    setInterval(async() => {
+        if(userData.auth){
+            let res = await APICALLER.refreshToken(userData.token);
+            if(res.response===true){
+                let datos = {...userData}
+                datos.token = res.results.token;
+                setLogin(datos);
+
+            }else{
+                logOut()
+            }
+        }
+    },1800000)
+
+    const setLogin = (datas)=>{
+        setUserData(datas);
+        sessionStorage.setItem("auth",JSON.stringify(datas));
+        //localStorage.setItem("auth",JSON.stringify(datas));
+    }
+
     const logIn = async (datas)=>{
         let res = await APICALLER.login(datas);
 
@@ -35,18 +56,16 @@ function AuthContext({children}) {
                 type_user:res.results.type_user,
                 auth:true
             }
-            setUserData(newdatesuser);
-            sessionStorage.setItem("auth", JSON.stringify(newdatesuser))
-            localStorage.setItem("auth", JSON.stringify(newdatesuser))
+            setLogin(newdatesuser);
         }
 
     }
 
-    const logOut = ()=>{
+    const logOut = async()=>{
+        await APICALLER.logout(userData.token);
         setUserData(initialUserData);
         localStorage.removeItem("auth");
         sessionStorage.setItem("auth",JSON.stringify(initialUserData));
-
     }
 
     const validarToken = useCallback(async()=>{

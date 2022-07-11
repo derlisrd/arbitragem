@@ -28,6 +28,8 @@ Route::prefix("auth")->group(function(){
     Route::post("refreshtoken",[UsersController::class,"refreshtoken"]);
 
     Route::post("validatetoken",[UsersController::class,"validatetoken"]);
+
+    Route::post("logout",[UsersController::class,"logout"]);
 });
 
 

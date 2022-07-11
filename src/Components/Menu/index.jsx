@@ -1,10 +1,13 @@
 import React from 'react';
 import { List, ListItem,Icon, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import {lista} from './lista';
+import { Link } from "react-router-dom";
 function Menu({open}) {
     return ( <List>
         {lista.map((elem, index) => (
-          <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+          <ListItem key={index} disablePadding sx={{ display: 'block' }} button 
+            component={Link} to={elem.url}
+          >
             <ListItemButton
               sx={{
                 minHeight: 48,

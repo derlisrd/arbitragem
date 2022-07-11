@@ -12,5 +12,11 @@ export const lista = [
         text:"Relatorios",
         icon:"reports",
         url:`${URL}/reports`
+    },
+    {
+        id:3,
+        text:"Users",
+        icon:"people",
+        url:`${URL}/users`
     }
 ];

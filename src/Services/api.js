@@ -42,5 +42,18 @@ export const APICALLER = {
         } catch (error) {
             return error.response.data;
         }
+    },
+    logout: async(token) => { 
+        try {
+            const res = await axios({
+                url: `${URL}auth/logout`,
+                method: "POST",
+                data: {token: token},
+                /* headers: { "X-Api-Token": "" }, */
+              });
+              return await res.data;
+        } catch (error) {
+            return error.response.data;
+        }
     }
 }
