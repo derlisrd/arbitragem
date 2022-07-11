@@ -91,7 +91,7 @@ function AuthContext({children}) {
 
 
     const values = {
-        userData,logIn
+        userData,logIn,logOut
     }
     return ( 
         <ContextAuth.Provider value={values}>
@@ -101,8 +101,8 @@ function AuthContext({children}) {
 }
 
 export function useAuth(){
-    const {userData,logIn} = useContext(ContextAuth)
-    return {userData,logIn}
+    const {userData,logIn,logOut} = useContext(ContextAuth)
+    return {userData,logIn,logOut}
 }
 
 
