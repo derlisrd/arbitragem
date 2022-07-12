@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "causal-jigsaw-349120",
+  "private_key_id": "cb5a83690f1693c54cf6aa288c50569e69a305c4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9OPu8yYHJGJBd\nsa02+Dyx9dfIcHbLhiebJ6sYuQHDjhLuFU+yYY1U/W2y4K4PByr8vf1exewR+QD1\nGp/00MvDshyPT6d6Z9W8y3gFtwI49xQs4F/GNQ4qaCRAKCHTzJ+eJXUyABvKiYit\nxszng2BFGHxCvih3ETfsPuHwUwh2wTIb8XuTWzcQmQKW0SHewwJv13HPsz9vDa+D\nRfju8VXCyzaDHomc0KihcqHDSbNNgHaFoHZksMzjjCQ5YP3DbekGzHdklM4KMMmE\nBouynzD7Ky2b8bNX9du7FV6Dk5+bfFPeH8ibAIN2EIeOez4d7sIzqbBo+FhuSibj\nphYnpi0vAgMBAAECggEAR4TarTPSkLHumuM1j4HK2w6LJRDQ7cMChEO9iQYgMwwn\nfoJikY8KjrWM+V+vmjGA329l7STMwcxGPt312F/0rD5NSiN2ry7A2+9hqXNO7T4C\nC6YwvOc/t+qNzQv+ISIFsI4C2ketOWO7W8c4mkaPI/6JtOZPwBUreGkaF64ilFNx\nh2SytNrmbOiItMwZB0rp/iiHajFBBy7kVnFOykn2Mjxe45G+iIvPP72JBw9UN5Zf\nj7so6xzVDx33+Z20Vnokjj0RSphp+n9dpFfxOReMfCSVJhjcN2b7wokiQA6FnzSq\nCwBFIlw++/fhmwbof72qOEXHcvesrxbebE1G49NIhQKBgQDqsbi5W5lfR/xzd0GW\nJTKy8lMYlb2z2vi97e4peRaEWmhgC0EYYi9b360kABviikhq85N4cXqUpBrlJjSV\noeLJJ1lofQAhDGcNBb8t+BT8G0HQFcKNwkhJhtEejLKvg3NiXzRi+3jwb/5Gqjal\n6bkagg/70FzVNX4L/MJcjeaJVQKBgQDOZoEE4eI1df638U8cErvNR80e7NK1kdcI\nS8R9UVrDjpaX8V7pT+VM3WtiRp088ZiCZlpE++adE0vyZkuFN3bDs9cVgHJqNVRK\nEt9q0pYYlLmEWwfi9UyjfoTDKeOHsu+tWzLu/jLB8m5nU/joJdeo51Dg44tbjHkZ\ntNs6TgyMcwKBgQDb4CrXBVkYaiG6r5SzrR/lhJ+THd6/XLvDfOCu3DHbR7QXnxOa\nW4pRAap9WtjFEZatFIwpv+7+yQwlePi04xjMKeBawxlW3P7CtYqZ750BYCv1Xh2K\nn+UHdZX/kANr6bQ1CkrTHRP99n58B8XxBJoVmpqM6XW/jkELy/7vpUXBjQKBgGoj\nEfOVyMJfFAY5A8pW49YzNwrRE6WlAmPUuo0K2da4Kz6lM35cxHhbYE4gK9lcD2X3\nBjJ1KujZNHPJIMq3c849W7xF2hA9rkONIvCGrAKl8CRcv1h5ddiZReIqV0O/wzpt\nLGrzstxDM3zVFKkkVJsZoGCVAmOof9m1RAreedt7AoGAelpo8ImHzPuEqlDo6y73\npYtH0S/93vcH5uZ8iRFnccOhQzgKXqeIgmuOLeLsWwK0+PT/rcLvu2dxnvGCR1mY\nQWGhzQIkpb9l31LJIBGcizPXQGqXbTSl0Zo5CQu1KYF+isCqM4eRnsJo316FFu6l\n7irm4GDwX+F1WZpiMnKO5V4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "arbitragem@causal-jigsaw-349120.iam.gserviceaccount.com",
+  "client_id": "104828564190364715465",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/arbitragem%40causal-jigsaw-349120.iam.gserviceaccount.com"
+}

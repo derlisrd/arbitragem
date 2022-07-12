@@ -69,8 +69,8 @@ function AuthContext({children}) {
     }
 
     const validarToken = useCallback(async()=>{
-
-        if (userData.auth) {
+        const store = JSON.parse(sessionStorage.getItem("userData")) || JSON.parse(localStorage.getItem("userData"));
+        if (userData.auth && store) {
             let res = await APICALLER.validateToken(userData.token);
             if (res.response===false) {    
                 logOut()
