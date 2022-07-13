@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
@@ -31,6 +32,8 @@ Route::prefix("auth")->group(function(){
 
     Route::post("logout",[UsersController::class,"logout"]);
 });
+
+Route::get("/google",[TestController::class,"google"]);
 
 
 
