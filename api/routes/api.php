@@ -34,6 +34,7 @@ Route::prefix("auth")->group(function(){
 });
 
 Route::get("/google",[TestController::class,"google"]);
+Route::get("/facebook",[TestController::class,"facebook"]);
 
 
 
