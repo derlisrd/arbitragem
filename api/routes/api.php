@@ -36,5 +36,9 @@ Route::prefix("auth")->group(function(){
 Route::get("/google",[TestController::class,"google"]);
 Route::get("/facebook",[TestController::class,"facebook"]);
 
+Route::get("/facebookcallback",[TestController::class,"facebookcallback"]);
+
+Route::get("/politicas",[TestController::class,"politicas"]);
+
 
 
